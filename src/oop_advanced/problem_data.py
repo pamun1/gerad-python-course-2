@@ -7,7 +7,7 @@ class ProblemData:
     # Assumption: Each Supplier and Customer has a unique name.
 
     def __init__(self, costs: list[Cost]):
-                      
+        
         self.__suppliers_by_name = {}
         self.__customers_by_name = {}
         self.__cost_by_sup_cust = {}
@@ -88,3 +88,7 @@ class ProblemData:
 
     def get_cost(self, supplier_name: str, customer_name: str) -> Cost:
         return self.__cost_by_sup_cust[supplier_name, customer_name]
+    
+    def __getitem__(self, key):
+        # key is a tuple: (supplier_name, customer_name)
+        return self.get_cost(key[0], key[1])

@@ -1,4 +1,3 @@
-from typing import Optional
 import matplotlib.pyplot as plt
 
 from problem_data import ProblemData

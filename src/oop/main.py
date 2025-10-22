@@ -1,5 +1,5 @@
-from solver_greedy import GreedySolver
-from solver_pyomo import PyomoSolver
+from greedy_solver import GreedySolver
+from pyomo_solver import PyomoSolver
 from transportation_problem import TransportationProblem
 
 

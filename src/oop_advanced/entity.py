@@ -6,8 +6,15 @@ class Entity:
     def name(self) -> str:
         return self.__name
 
-    def print(self) -> None:
-        print(f"Entity: {self.name}")
+    def __repr__(self):
+        return f"Entity({self.name!r})"
+
+    def __str__(self):
+        return f"Entity {self.name}"
+    
+    def __add__(self, other: "Entity") -> "Entity":
+        # Combine names of two entities
+        return Entity(self.name + "|" + other.name)
 
 
 class Supplier(Entity):
@@ -30,8 +37,15 @@ class Supplier(Entity):
             raise ValueError(f"remaining_supply must be non-negative.")
         self.__remaining_supply = float(value)
 
-    def print(self) -> None:
-        print(f"Supplier: {self.name}, {self.supply}")
+    def __repr__(self):
+        return f"Supplier({self.name!r}, {self.supply!r}, {self.remaining_supply!r})"
+
+    def __str__(self):
+        return f"Supplier {self.name}: {self.remaining_supply} / {self.supply} units"
+    
+    def __add__(self, other: "Supplier") -> "Supplier":
+        # Combine names and supplies of two suppliers
+        return Supplier(self.name + "|" + other.name, self.supply + other.supply)
     
 
 class Customer(Entity):
@@ -54,5 +68,12 @@ class Customer(Entity):
             raise ValueError(f"remaining_demand must be non-negative.")
         self.__remaining_demand = float(value)
 
-    def print(self) -> None:
-        print(f"Customer: {self.name}, {self.demand}")
+    def __repr__(self):
+        return f"Customer({self.name!r}, {self.demand!r}, {self.remaining_demand!r})"
+
+    def __str__(self):
+        return f"Customer {self.name}: {self.remaining_demand} / {self.demand} units"
+    
+    def __add__(self, other: "Customer") -> "Customer":
+        # Combine names and supplies of two customers
+        return Customer(self.name + "|" + other.name, self.demand + other.demand)

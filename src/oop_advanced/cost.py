@@ -24,3 +24,10 @@ class Cost:
 
     def __str__(self):
         return f"Cost({self.supplier.name} -> {self.customer.name}: {self.value})"
+
+    def __eq__(self, other: 'Cost') -> bool:
+        return self.value == other.value
+
+    def __lt__(self, other: 'Cost') -> bool:
+        return self.value < other.value
+    
